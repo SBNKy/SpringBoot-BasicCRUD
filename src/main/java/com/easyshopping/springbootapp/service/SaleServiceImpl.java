@@ -3,6 +3,7 @@ package com.easyshopping.springbootapp.service;
 import com.easyshopping.springbootapp.dao.SaleDAO;
 import com.easyshopping.springbootapp.dao.SaleDAOImpl;
 import com.easyshopping.springbootapp.entity.Sale;
+import com.easyshopping.springbootapp.exception.SaleNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.transaction.Transactional;
@@ -34,7 +35,7 @@ public class SaleServiceImpl implements SaleService {
         Sale tempSale = saleDAO.findById(id);
 
         if (tempSale == null)
-            throw new RuntimeException("Sale with id not found - " + id);
+            throw new SaleNotFoundException("Sale with id not found - " + id);
 
         return tempSale;
     }
