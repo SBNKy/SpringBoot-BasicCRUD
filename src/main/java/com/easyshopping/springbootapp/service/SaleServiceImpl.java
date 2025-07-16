@@ -3,6 +3,7 @@ package com.easyshopping.springbootapp.service;
 import com.easyshopping.springbootapp.dao.SaleDAO;
 import com.easyshopping.springbootapp.dao.SaleDAOImpl;
 import com.easyshopping.springbootapp.entity.Sale;
+import com.easyshopping.springbootapp.exception.InvalidRequestException;
 import com.easyshopping.springbootapp.exception.SaleNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -44,7 +45,7 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public Sale addSale(Sale sale) {
         if (sale.getId() != null)
-            throw new RuntimeException("New sale cannot have and id " + sale.getId());
+            throw new InvalidRequestException("New sale cannot have an id " + sale.getId());
 
         return saleDAO.save(sale);
     }
@@ -52,10 +53,8 @@ public class SaleServiceImpl implements SaleService {
     @Transactional
     @Override
     public Sale updateSale(Sale sale) {
-        Sale tempSale = findById(sale.getId());
-
-        if (tempSale == null)
-            throw new RuntimeException("Sale with id not found - " + sale.getId());
+        // validates if sale exists
+        findById(sale.getId());
 
         return saleDAO.save(sale);
     }
