@@ -1,4 +1,4 @@
-package com.easyshopping.springbootapp.entity;
+package com.easyshopping.springbootapp.model;
 
 import jakarta.persistence.*;
 

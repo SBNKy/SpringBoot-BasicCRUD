@@ -1,9 +1,8 @@
 package com.easyshopping.springbootapp.controller;
 
-import com.easyshopping.springbootapp.entity.Sale;
+import com.easyshopping.springbootapp.model.Sale;
 import com.easyshopping.springbootapp.service.SaleService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
